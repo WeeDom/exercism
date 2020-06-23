@@ -1,0 +1,25 @@
+It's generally best to reserve *args and **kwargs solely for when you have reason to expect a variable number of unknown positional or keyword-only (respectively) arguments, or a very large number of known ones. By using kwargs you force your user to call your method with keywords while also not giving them any idea what those keywords are. So in this case use a named parameter and give it a default value ... now your user can call it either positionally or with the keyword, and you're also telling them up front what named parameters will modify the action of your code, which is just more semantically meaningful.
+
+Try to avoid any form of Hungarian notation where you incorporate the type of a thing into the name of that thing: if in the future you decided to change the type of dict_plants you'd have to update both the type and the name ... something like codes_2_names is more descriptive.
+
+That said, consider moving any more complex data structure that is known to be constant throughout the runtime of your code to either be assigned to the class or the global namespace ... that map of letters to names need only ever be allocated once, and having it in the body of your method just distracts. Also the Python idiom is to name such constants in an UPPER_CASE name, to indicate their constant nature.
+
+The default list of students names is also such a constant.
+
+Having the dictionary for the default students be a dict literal while you build the dict for a non-default list of students is a recipe for the two implementations to get out of sync.
+
+Notice that the default list was given to you in alpha-sorted order? The last two tests make it clear a user might not do that, see the Instructions/README and the line "their teacher assigns cups to the children alphabetically by their names". As a nod to making sure future maintainers don't have to know they must only insert new default students in alpha order, make sure you're sorting whatever students get presented to you.
+
+Using slices isn't a bad idea, but you're deferring the work of building each student's list of plant names to the Garden.plants method ... what happens if someone inspects the same student twice? Or a thousand times? The diagram is immutable, the garden assignments will never change, so you could build a fixed mapping of student names to garden assignments. You'd be sacrificing a bit of memory to save CPU effort, but I'd tend to argue that memory is cheap while redundant effort is unnecessary. It would also allow you to not save the diagram state to your instance at all.
+
+You've only got to use list when casting something that isn't a list to a list ... because str.split already returns a list, what you're doing here is making a list, then making a copy of it.
+
+As mentioned on Slack, a generator comprehension feeding list is a more complicated way of writing a list comprehension: list(self.dict_plants[i] for i in list(self.diagram[0][self.students_ranges[student]])) is [self.dict_plants[i] for i in self.diagram[0][self.students_ranges[student]]].
+
+22/05
+
+Ok, so this moves the work out of the Garden.plants method, but it introduces the issue of iterating twice over the students ... can you see how you could build self.student_plants in a single loop? Do you need students_ranges at all?
+
+Also try not to store unnecessary data on your class instances; the caller already has the diagram string, is the self.diagram ever useful outside the __init__?
+
+BTW, one minor point, but you'll normally want to use str.splitlines rather than str.split with a specific newline character, unless you know that the string being split comes from the OS that newline is specific to. Our test data will always use Unix-style newlines, but in the real world you cannot rely on that.

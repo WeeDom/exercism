@@ -22,7 +22,6 @@ class IsogramTest(unittest.TestCase):
         self.assertIs(is_isogram("subdermatoglyphic"), True)
 
     def test_word_with_duplicated_character_in_mixed_case(self):
-        # import pdb; pdb.set_trace()
         self.assertIs(is_isogram("Alphabet"), False)
 
     def test_word_with_duplicated_character_in_mixed_case_lowercase_first(self):

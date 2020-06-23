@@ -1,0 +1,9 @@
+Hi,
+
+A nice try. Just a few hints, rather than giving you the answers.
+
+1. Do look up 'default arguments python'.
+2. Look up f-string - we don't really use `string.format(thing)` any more.
+3. Using 1., this can be solved in one line.
+
+Good luck!!

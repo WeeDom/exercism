@@ -1,0 +1,17 @@
+Hi WeeDom,
+
+In general, I like this solution. Clean & fairly efficient. Good job!
+
+So - my suggestions are all of the "can we make this more pythonic or more succinct?" variety -- since you already have most of the elements in place:
+
+line 6 is calling reversed() on self.card (a string), turning that into a list(), and then calling .join() to glue it back into a string. But reversed() already returns an iterator, and .join() accepts any iterable, so you might be able to remove some excess loops or calls there.
+
+Let's take a second look at what the intended result of line 6 is: reversal. One of the cool things about python is that strings support both slicing, and negative indexes slicing is a really excellent and lazy way of getting a copy of a string or a section of a string. How might you employ slicing and/or negative indexes to shorten or clarify this code?
+
+Nothing at all wrong with going through the len() of card_num and then checking the value at the given index. But the enumerate built-in could help clarify this code a bit.
+
+It is possible to re-write lines 15-20 as a ternary one-liner. Doesn't really save you anything .. but I'll leave it to you as a fun bit of code-golf, if you want the challenge.
+
+Finally, do you need to reverse the string at all? If python allows negative indexes, could you just navigate things backwards? Would that be more or less confusing for the reader of your code?
+
+All but the first point of this feedback is completely optional - your code works fine as-is. However, I do think you should iterate just a bit and address the extra work you're doing on line 6 -- and when you do, you'll have a really good solution. I look forward to your next iteration!

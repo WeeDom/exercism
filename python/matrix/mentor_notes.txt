@@ -1,0 +1,5 @@
+Ok, so this moves the work out of the Garden.plants method, but it introduces the issue of iterating twice over the students ... can you see how you could build self.student_plants in a single loop? Do you need students_ranges at all?
+
+Also try not to store unnecessary data on your class instances; the caller already has the diagram string, is the self.diagram ever useful outside the __init__?
+
+BTW, one minor point, but you'll normally want to use str.splitlines rather than str.split with a specific newline character, unless you know that the string being split comes from the OS that newline is specific to. Our test data will always use Unix-style newlines, but in the real world you cannot rely on that.

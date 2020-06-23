@@ -1,0 +1,8 @@
+Hi,
+
+A nice try, and a working solution. What the main challenge is, though, isn't calculating the scores. What we want to see is you creating the data structure programmatically.
+
+Try grouping them letters by score (tuples, dicts, list, whatever) and then calculating the score per letter from that. It's much more readable, and much more maintainable.
+
+Thanks
+WeeDom

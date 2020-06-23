@@ -154,9 +154,12 @@ class TwelveDaysTest(unittest.TestCase):
             "two Turtle Doves, "
             "and a Partridge in a Pear Tree."
         ]
+        # import pdb; pdb.set_trace()
         self.assertEqual(recite(12, 12), expected)
 
     def test_recites_first_three_verses_of_the_song(self):
+        # import pdb; pdb.set_trace()
+        self.maxDiff = None
         expected = [recite(n, n)[0] for n in range(1, 4)]
         self.assertEqual(recite(1, 3), expected)
 
