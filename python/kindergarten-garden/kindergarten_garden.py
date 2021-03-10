@@ -40,6 +40,4 @@ class Garden:
             end = end + 2
 
     def plants(self, student):
-
-        import pdb; pdb.set_trace()
         return self.students_plants[student]
