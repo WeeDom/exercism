@@ -1,0 +1,13 @@
+Hi,
+
+A good effort, which does work, but I can't approve it.
+
+What we're looking to achieve, from this exercise, is for you to create a data structure representing the twelve gifts and days. Then, exercise your coding muscles to interrogate that structure to return the correct verse(s).
+
+You can do this in various ways,using dicts, tuples, or anything else to create the required structure.
+
+Give it another go, and I look forward to seeing your next iteration.
+
+Most importanly, have fun!
+
+WeeDom
