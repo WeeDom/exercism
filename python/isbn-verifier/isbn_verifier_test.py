@@ -1,22 +1,23 @@
 import unittest
 
-from isbn_verifier import is_valid
+from isbn_verifier import (
+    is_valid,
+)
 
-# Tests adapted from `problem-specifications//canonical-data.json` @ v2.7.0
+# Tests adapted from `problem-specifications//canonical-data.json`
 
 
 class IsbnVerifierTest(unittest.TestCase):
-    def test_valid_isbn_number(self):
+    def test_valid_isbn(self):
         self.assertIs(is_valid("3-598-21508-8"), True)
 
     def test_invalid_isbn_check_digit(self):
         self.assertIs(is_valid("3-598-21508-9"), False)
 
-    def test_valid_isbn_number_with_a_check_digit_of_10(self):
+    def test_valid_isbn_with_a_check_digit_of_10(self):
         self.assertIs(is_valid("3-598-21507-X"), True)
 
     def test_check_digit_is_a_character_other_than_x(self):
-        import pdb; pdb.set_trace()
         self.assertIs(is_valid("3-598-21507-A"), False)
 
     def test_invalid_character_in_isbn(self):
@@ -44,7 +45,6 @@ class IsbnVerifierTest(unittest.TestCase):
         self.assertIs(is_valid("3-598-21507"), False)
 
     def test_check_digit_of_x_should_not_be_used_for_0(self):
-        import pdb; pdb.set_trace()
         self.assertIs(is_valid("3-598-21515-X"), False)
 
     def test_empty_isbn(self):

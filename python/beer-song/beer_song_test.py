@@ -1,8 +1,10 @@
 import unittest
 
-from beer_song import recite
+from beer_song import (
+    recite,
+)
 
-# Tests adapted from `problem-specifications//canonical-data.json` @ v2.1.0
+# Tests adapted from `problem-specifications//canonical-data.json`
 
 
 class BeerSongTest(unittest.TestCase):
@@ -39,7 +41,6 @@ class BeerSongTest(unittest.TestCase):
             "No more bottles of beer on the wall, no more bottles of beer.",
             "Go to the store and buy some more, 99 bottles of beer on the wall.",
         ]
-        import pdb; pdb.set_trace()
         self.assertEqual(recite(start=0), expected)
 
     def test_first_two_verses(self):

@@ -1,16 +1,13 @@
-import itertools
-from itertools import Iterable
-
-return_array = []
-
-def really_flatten(iterable):
-    for i in iterable:
-        flatten(i)
-    return return_array
-
 def flatten(iterable):
-    for i in iterable:
-        if isinstance(i, Iterable):
-            return_array.append(list(itertools.chain.from_iterable(iterable)))
+    return __nested_flat(*iterable)
+
+def __nested_flat(*args):
+    items = []
+    for arg in args:
+        if arg is None or arg == () or arg == {}:
+            next
+        elif isinstance(arg, list):
+            items += flatten(arg)
         else:
-            return_array.append(i)
+            items.append(arg)
+    return items

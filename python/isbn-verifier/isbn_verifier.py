@@ -1,19 +1,17 @@
-import re
-
-
 def is_valid(isbn):
-    digits = list(isbn.replace('-', ''))
-    if len(digits) != 10 or not ''.join(digits[:-1]).isnumeric():
+    chunks = list(isbn.replace("-", ""))
+    if len(chunks) != 10:
         return False
-    if not digits[-1].isnumeric():
-        if digits[-1].lower() != 'x':
-            return False
-    digits[-1] = (digits[-1], 10)[digits[-1].lower() == 'x']
 
+    if not chunks[-1].isdigit() and chunks[-1].upper() == 'X':
+        chunks[-1] = '10'
+
+    count = 10
     total = 0
-    cnt = 0
-    for i in range(10, 1, -1):
-        total = total + (int(digits[cnt]) * i)
-        cnt = cnt + 1
-    import pdb; pdb.set_trace()
+    for chunk in chunks:
+        if not chunk.isdigit():
+            return False
+        total = total + (int(chunk) * count)
+        count = count -1
+
     return total % 11 == 0
